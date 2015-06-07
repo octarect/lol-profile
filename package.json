@@ -1,0 +1,28 @@
+{
+  "name": "LoLProfile.com",
+  "version": "0.0.1",
+  "description": "A Simply profile on League of Legends",
+  "main": "server.js",
+  "repository": "rk0der/lol-profile",
+  "keywords": [
+    "react",
+    "reactjs",
+    "lol",
+    "league of legends"
+  ],
+  "author": "Ryota Kota <ryo.alter@gmail.com>",
+  "license": "GPL",
+  "dependencies": {
+    "browserify": "^6.3.3",
+    "express": "^4.10.4",
+    "handlebars": "^2.0.0",
+    "node-jsx": "^0.12.4",
+    "react": "^0.12.1",
+    "reactify": "0.17.1",
+    "watchify": "^2.1.1",
+    "sync-request": "^2.0.1"
+  },
+  "engines": {
+    "node": "0.10.33"
+  }
+}

@@ -1,0 +1,30 @@
+body {
+  background-color: #eeeeee;
+}
+#profile {
+  overflow: hidden;
+  div {
+    float: left;
+    padding: 5px 5px;
+  }
+  .summoner-id {
+    font-size: 18px;
+    color: #666666;
+  }
+  .summoner-level {
+    color: #444444;
+  }
+  .profile-footer {
+  }
+}
+
+#matchHistory {
+  .champ-icon {
+    width: 32px;
+    height: 32px;
+  }
+  .spell-icon {
+    width: 32px;
+    height: 32px;
+  }
+}

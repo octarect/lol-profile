@@ -1,0 +1,19 @@
+<html>
+<head>
+  <title>React.js server-side rendering sample</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="/css/bootstrap-theme.min.css"rel="stylesheet" media="screen">
+  <link href="/css/style.css" rel="stylesheet" media="screen">
+  <script src="/lib/jquery.min.js"></script>
+  <script src="/lib/bootstrap.min.js"></script>
+  <script src="/lib/d3.min.js"></script>
+  <script src="/lib/extension.js"></script>
+</head>
+<body>
+  <header id="header">{{{header}}}</header>
+  <div id="main">{{{markup}}}</div>
+  <script id="initial-data" type="text/plain" data-json="{{initialData}}"></script>
+  <script src="/bundle.js"></script>
+</body>
+</html>
