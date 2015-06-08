@@ -59,6 +59,12 @@ var api = {
           return this.sendRequest(this.api_root1 + api_main + "&api_key=" + this.api_key);
         }
       }
+      if (data.target == "s_spells") {
+        if ("type" in data) {
+          api_main = this.api_ver.lol_static_data + this.static_data_s_spells.format({type: data.type});
+          return this.sendRequest(this.api_root1 + api_main + "&api_key=" + this.api_key);
+        }
+      }
     }
     
     return null;
@@ -67,6 +73,7 @@ var api = {
   get_summoner_by_id: "/summoner/{id}",
   get_games: "/game/by-summoner/{id}/recent",
   static_data_champs: "/champion?champData={type}",
+  static_data_s_spells: "/summoner-spell?spellData={type}",
 };
 
 module.exports = api;

@@ -12,7 +12,8 @@ var express      = require("express"),
 var api = require("./easy_lol_api");
 api.init("6d449796-f2d9-4c14-9723-3747e577f800", "na");
 // get static-data
-var champs = api.get("get_static_data", {target:"champs", type:"info"});
+var champs = api.get("get_static_data", {target: "champs", type: "info"});
+var s_spells = api.get("get_static_data", {target: "s_spells", type: "key"});
 
 // load react components
 require("node-jsx").install({harmony: true});
