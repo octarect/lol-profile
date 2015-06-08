@@ -43,10 +43,18 @@ var api = {
       }
     }
     
+    if (command == "get_games") {
+      if ("id" in data) {
+        api_main = this.api_ver.game + this.get_games.format({id: data.id});
+        return this.sendRequest(this.api_root + api_main + "?api_key=" + this.api_key);
+      }
+    }
+    
     return null;
   },
   get_summoner_by_name: "/summoner/by-name/{name}",
   get_summoner_by_id: "/summoner/{id}",
+  get_games: "/game/by-summoner/{id}/recent",
 };
 
 module.exports = api;
