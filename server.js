@@ -20,13 +20,18 @@ var Navigation = require("./components/header");
 app.get("/", function(req, res) {
   var template = Handlebars.compile(fs.readFileSync('./index.hbs').toString());
   var url_parts = url.parse(req.url, true);
-  var s_name = url_parts.query.name.toLowerCase();
-  var summoner = api.get("get_summoner", {name: s_name});
-  console.log(summoner);
-  res.send(template({
-    header: React.renderToString(React.createElement(Navigation, {title: "LoLProfile.com"})),
-    markup: React.renderToString(React.createElement(Main, {summoner: summoner[s_name]})),
-  }));
+  
+  if ("name" in url_parts.query) {
+    var s_name = url_parts.query.name.toLowerCase();
+    var summoner = api.get("get_summoner", {name: s_name});
+    console.log(summoner);
+    res.send(template({
+      header: React.renderToString(React.createElement(Navigation, {title: "LoLProfile.com"})),
+      markup: React.renderToString(React.createElement(Main, {summoner: summoner[s_name]})),
+    }));
+  } else {
+    res.send("Error: Invalid request...");
+  }
 });
 
 app.get(/^\/(?:css|lib)\/.+/, function(req, res) {
