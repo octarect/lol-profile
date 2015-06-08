@@ -25,9 +25,11 @@ app.get("/", function(req, res) {
     var s_name = url_parts.query.name.toLowerCase();
     var summoner = api.get("get_summoner", {name: s_name});
     console.log(summoner);
+    var games = api.get("get_games", {id: summoner[s_name].id});
+    console.log(games);
     res.send(template({
       header: React.renderToString(React.createElement(Navigation, {title: "LoLProfile.com"})),
-      markup: React.renderToString(React.createElement(Main, {summoner: summoner[s_name]})),
+      markup: React.renderToString(React.createElement(Main, {summoner: summoner[s_name], history: games})),
     }));
   } else {
     res.send("Error: Invalid request...");
