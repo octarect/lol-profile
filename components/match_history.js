@@ -8,7 +8,7 @@ var Row = React.createClass({
     var game = this.props.game;
     return (
       <tr>
-        <td><ChampIcon champion_id={game.championId} /></td>
+        <td><ChampIcon champion_id={game.championId} champs={this.props.champs} /></td>
         <td></td>
         <td></td>
         <td></td>
