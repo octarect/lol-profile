@@ -5,7 +5,8 @@ require("./format");
 var api = {
   api_key: "",
   region: "na",
-  api_root: "",
+  api_root0: "",
+  api_root1: "",
   api_ver: {
     champion: "v1.2",
     current_game: "v1.0",
@@ -23,7 +24,8 @@ var api = {
   init: function(api_key, region) {
     this.api_key = api_key;
     this.region = region;
-    this.api_root = "https://{reg}.api.pvp.net/api/lol/{reg}/".format({reg: this.region});
+    this.api_root0 = "https://{reg}.api.pvp.net/api/lol/{reg}/".format({reg: this.region});
+    this.api_root1 = "https://{reg}.api.pvp.net/api/lol/static-data/{reg}/".format({reg: this.region});
   },
   sendRequest: function(url) {
     var res = request("GET", url);
@@ -35,18 +37,27 @@ var api = {
     if (command == "get_summoner") {
       if ("id" in data) {
         api_main = this.api_ver.summoner + this.get_summoner_by_id.format({id: data.id});
-        return this.sendRequest(this.api_root + api_main + "?api_key=" + this.api_key);
+        return this.sendRequest(this.api_root0 + api_main + "?api_key=" + this.api_key);
       } 
       if ("name" in data) {
         api_main = this.api_ver.summoner + this.get_summoner_by_name.format({name: data.name});
-        return this.sendRequest(this.api_root + api_main + "?api_key=" + this.api_key);
+        return this.sendRequest(this.api_root0 + api_main + "?api_key=" + this.api_key);
       }
     }
     
     if (command == "get_games") {
       if ("id" in data) {
         api_main = this.api_ver.game + this.get_games.format({id: data.id});
-        return this.sendRequest(this.api_root + api_main + "?api_key=" + this.api_key);
+        return this.sendRequest(this.api_root0 + api_main + "?api_key=" + this.api_key);
+      }
+    }
+    
+    if (command == "get_static_data") {
+      if (data.target == "champs") {
+        if ("type" in data) {
+          api_main = this.api_ver.lol_static_data + this.static_data_champs.format({type: data.type});
+          return this.sendRequest(this.api_root1 + api_main + "&api_key=" + this.api_key);
+        }
       }
     }
     
@@ -55,6 +66,7 @@ var api = {
   get_summoner_by_name: "/summoner/by-name/{name}",
   get_summoner_by_id: "/summoner/{id}",
   get_games: "/game/by-summoner/{id}/recent",
+  static_data_champs: "/champion?champData={type}",
 };
 
 module.exports = api;
