@@ -6,14 +6,22 @@ var Row = React.createClass({
   displayName: "Row",
   render: function() {
     var game = this.props.game;
+    var result = game.stats.win ? "Win" : "Defeat";
+    var rowClass = game.stats.win ? "info" : "danger";
+    var kill = game.stats.championsKilled;
+    var death = game.stats.numDeaths;
+    var assist = game.stats.assists;
+    kill = kill != undefined ? kill : 0;
+    death = death != undefined ? death : 0;
+    assist = assist != undefined ? assist : 0;
     return (
-      <tr>
+      <tr className={rowClass}>
         <td><ChampIcon champion_id={game.championId} champs={this.props.champs} /></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{result}</td>
+        <td>{game.gameMode}</td>
+        <td>{game.gameType}</td>
+        <td>{game.subType}</td>
+        <td>{kill}/{death}/{assist}</td>
         <td></td>
       </tr>
     );
