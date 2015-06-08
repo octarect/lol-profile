@@ -1,11 +1,14 @@
+"use strict";
 var React = require("react");
+var ChampIcon = require("./champ_icon");
 
 var Row = React.createClass({
   displayName: "Row",
   render: function() {
+    var game = this.props.game;
     return (
       <tr>
-        <td></td>
+        <td><ChampIcon champion_id={game.championId} /></td>
         <td></td>
         <td></td>
         <td></td>
@@ -21,7 +24,7 @@ var MatchHistory = React.createClass({
   displayName: "MatchHistory",
   render: function() {
     var Rows = this.props.games.games.map((game) => {
-      return React.createElement(Row, {game:game});
+      return React.createElement(Row, {game:game, champs:this.props.champs});
     });
     return (
       <div id="matchHistory">
