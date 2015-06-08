@@ -23,6 +23,6 @@
     "sync-request": "^2.0.1"
   },
   "engines": {
-    "node": "0.10.33"
+    "node": "0.10.X"
   }
 }

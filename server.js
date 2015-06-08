@@ -74,6 +74,6 @@ app.get('/bundle.js', function(req, res) {
 });
 
 // start listening 
-var port = 8080;
+var port = process.env.PORT || 8080;
 console.log("listening on " + port);
 app.listen(port);
