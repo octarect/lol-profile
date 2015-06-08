@@ -1,6 +1,7 @@
 "use strict";
 var React = require("react");
 var ChampIcon = require("./champ_icon");
+var S_SpellIcon = require("./s_spell_icon");
 
 var Row = React.createClass({
   displayName: "Row",
@@ -11,9 +12,11 @@ var Row = React.createClass({
     var kill = game.stats.championsKilled;
     var death = game.stats.numDeaths;
     var assist = game.stats.assists;
-    kill = kill != undefined ? kill : 0;
-    death = death != undefined ? death : 0;
-    assist = assist != undefined ? assist : 0;
+    
+    kill = kill !== undefined ? kill : 0;
+    death = death !== undefined ? death : 0;
+    assist = assist !== undefined ? assist : 0;
+    
     return (
       <tr className={rowClass}>
         <td><ChampIcon champion_id={game.championId} champs={this.props.champs} /></td>
@@ -22,7 +25,10 @@ var Row = React.createClass({
         <td>{game.gameType}</td>
         <td>{game.subType}</td>
         <td>{kill}/{death}/{assist}</td>
-        <td></td>
+        <td>
+          <S_SpellIcon s_spells={this.props.s_spells} s_spell_id={game.spell1} />
+          <S_SpellIcon s_spells={this.props.s_spells} s_spell_id={game.spell2} />
+        </td>
       </tr>
     );
   }
@@ -32,7 +38,7 @@ var MatchHistory = React.createClass({
   displayName: "MatchHistory",
   render: function() {
     var Rows = this.props.games.games.map((game) => {
-      return React.createElement(Row, {game:game, champs:this.props.champs});
+      return React.createElement(Row, {game:game, champs:this.props.champs, s_spells:this.props.s_spells});
     });
     return (
       <div id="matchHistory">

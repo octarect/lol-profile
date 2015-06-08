@@ -2,6 +2,15 @@
 var React = require("react");
 var s_spell_icon_url = "http://ddragon.leagueoflegends.com/cdn/5.2.1/img/spell/{name}.png ";
 
+var getSummonerSpellById = function(s_spells, id) {
+  var data = s_spells.data;
+  for (var spell in data) {
+    if (data[spell].id == id)
+      return data[spell];
+  }
+  return null;
+};
+
 var SummonerSpellIcon = React.createClass({
   displayName: "SummonerSpellIcon",
   render: function() {
@@ -13,3 +22,5 @@ var SummonerSpellIcon = React.createClass({
     );
   }
 });
+
+module.exports = SummonerSpellIcon;

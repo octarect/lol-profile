@@ -8,7 +8,7 @@ var Main = React.createClass({
     return (
       <div className="container">
         <Profile summoner={this.props.summoner} />
-        <MatchHistory games={this.props.history} champs={this.props.champs} />
+        <MatchHistory games={this.props.history} champs={this.props.champs} s_spells={this.props.s_spells} />
       </div>
     );
   }

@@ -32,7 +32,7 @@ app.get("/", function(req, res) {
     console.log(games);
     res.send(template({
       header: React.renderToString(React.createElement(Navigation, {title: "LoLProfile.com"})),
-      markup: React.renderToString(React.createElement(Main, {summoner: summoner[s_name], history: games, champs:champs})),
+      markup: React.renderToString(React.createElement(Main, {summoner: summoner[s_name], history:games, champs:champs, s_spells:s_spells})),
     }));
   } else {
     res.send("Error: Invalid request...");
