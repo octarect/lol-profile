@@ -11,6 +11,9 @@ var express      = require("express"),
 // League of Legends API wrapper 
 var api = require("./easy_lol_api");
 api.init("6d449796-f2d9-4c14-9723-3747e577f800", "na");
+// get static-data
+var champs = api.get("get_static_data", {target: "champs", type: "info"});
+var s_spells = api.get("get_static_data", {target: "s_spells", type: "key"});
 
 // load react components
 require("node-jsx").install({harmony: true});
@@ -29,7 +32,7 @@ app.get("/", function(req, res) {
     console.log(games);
     res.send(template({
       header: React.renderToString(React.createElement(Navigation, {title: "LoLProfile.com"})),
-      markup: React.renderToString(React.createElement(Main, {summoner: summoner[s_name], history: games})),
+      markup: React.renderToString(React.createElement(Main, {summoner: summoner[s_name], history:games, champs:champs, s_spells:s_spells})),
     }));
   } else {
     res.send("Error: Invalid request...");
@@ -71,6 +74,6 @@ app.get('/bundle.js', function(req, res) {
 });
 
 // start listening 
-var port = 8080;
+var port = process.env.PORT || 8080;
 console.log("listening on " + port);
 app.listen(port);
