@@ -20,7 +20,8 @@
     "react": "^0.12.1",
     "reactify": "0.17.1",
     "watchify": "^2.1.1",
-    "sync-request": "^2.0.1"
+    "sync-request": "^2.0.1",
+    "date-utils": "^1.2.17"
   },
   "engines": {
     "node": "0.10.X"

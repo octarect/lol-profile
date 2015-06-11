@@ -1,4 +1,5 @@
 "use strict";
+require("date-utils");
 var React = require("react");
 var ChampIcon = require("./champ_icon");
 var S_SpellIcon = require("./s_spell_icon");
@@ -17,8 +18,11 @@ var Row = React.createClass({
     death = death !== undefined ? death : 0;
     assist = assist !== undefined ? assist : 0;
     
+    var date = new Date(game.createDate).toFormat("YYYY/MM/DD HH24:MI:SS");
+    
     return (
       <tr className={rowClass}>
+        <td>{date}</td>
         <td><ChampIcon champion_id={game.championId} champs={this.props.champs} /></td>
         <td>{result}</td>
         <td>{game.gameMode}</td>
@@ -46,6 +50,7 @@ var MatchHistory = React.createClass({
         <table className="table table-bordered table-condensed">
           <thead>
             <tr>
+              <th>Date</th>
               <th>champ</th>
               <th>result</th>
               <th>game-mode</th>
